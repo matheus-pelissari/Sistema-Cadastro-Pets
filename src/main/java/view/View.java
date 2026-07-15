@@ -1,0 +1,105 @@
+package view;
+
+import controller.PetController;
+import jsonutil.JsonUtil;
+import com.fasterxml.jackson.databind.JsonNode;
+
+import java.io.File;
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+public class View {
+
+    private PetController petControler;
+
+    public void setController(PetController controller) {
+        this.petControler = controller;
+    }
+
+    Scanner sc = new Scanner(System.in);
+
+    public void showView(){
+
+        boolean inicializador = true;
+
+
+
+        while(inicializador){
+            int escolha = 0;
+
+            // Leitura do menu.json
+            try{
+                JsonNode node = JsonUtil.MAPPER.readTree(new File("menu.json"));
+                mostrarMenu(node.toPrettyString());
+            }catch(java.io.IOException e){
+                mostrarMsgLn("Erro ao ler o arquivo Menu");
+                break;
+            }
+
+            // Escolha da opção
+            try{
+                mostrarMsg("Escolha: ");
+                escolha = sc.nextInt();
+                sc.nextLine();
+                if(escolha <= 0 || escolha > 6){
+                    throw new IllegalArgumentException();
+                }
+            }catch (InputMismatchException e){
+                mostrarMsgLn("Input não foi um int");
+                sc.nextLine();
+                continue;
+            }catch (IllegalArgumentException e){
+                mostrarMsgLn("O valor da escolha deve ser >= 0 && <= 6");
+                continue;
+            }
+
+
+            switch(escolha){
+
+                // Cadastrar Pet
+                case 1:
+                    petControler.cadastrarPet();
+                    break;
+
+                case 2 :
+                    // Alterar dados de um pet cadastrado
+                    break;
+
+                case 3 :
+                    // Deletar um pet cadastrado
+                    break;
+
+                case 4 :
+                    // Listar todos os pets cadastrados
+                    break;
+
+                case 5:
+                    // Listar pets por algum critério
+                    break;
+
+                case 6:
+                    // sair
+                    inicializador = false;
+                    break;
+            }
+        }
+    }
+
+    public void escolha(JsonNode pergunta){
+        System.out.println(pergunta);
+        System.out.print("Escolha: ");
+    }
+
+    public void mostrarMsgLn(String s){
+        System.out.println("[INFO] " + s);
+    }
+
+    public void mostrarMsg(String s){
+        System.out.print(s);
+    }
+
+    public void mostrarMenu(String s){
+        System.out.println("**MENU** " + s);
+    }
+
+}
