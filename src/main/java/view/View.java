@@ -102,4 +102,8 @@ public class View {
         System.out.println("**MENU** " + s);
     }
 
+    public void teste(){
+        System.out.println("teste");
+    }
+
 }
