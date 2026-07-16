@@ -24,8 +24,6 @@ public class View {
 
         boolean inicializador = true;
 
-
-
         while(inicializador){
             int escolha = 0;
 
@@ -64,7 +62,7 @@ public class View {
                     break;
 
                 case 2 :
-                    // Alterar dados de um pet cadastrado
+                    petControler.alterarPet();
                     break;
 
                 case 3 :
@@ -72,7 +70,7 @@ public class View {
                     break;
 
                 case 4 :
-                    // Listar todos os pets cadastrados
+                    petControler.listarPets();
                     break;
 
                 case 5:
@@ -80,7 +78,6 @@ public class View {
                     break;
 
                 case 6:
-                    // sair
                     inicializador = false;
                     break;
             }
@@ -101,7 +98,7 @@ public class View {
     }
 
     public void mostrarMenu(String s){
-        System.out.println("**MENU** " + s);
+        System.out.println("\n**MENU** " + s);
     }
 
     public void menuBusca(){
@@ -121,4 +118,7 @@ public class View {
         }
     }
 
+    public void printPet(Pet o){
+        System.out.println(o);
+    }
 }

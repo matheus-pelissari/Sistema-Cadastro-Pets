@@ -86,6 +86,17 @@ public class PetController {
         }
     }
 
+    public void listarPets(){
+        try {
+            view.printarLista(dao.listarPets());
+        }catch (IOException i){
+            view.mostrarMsgLn("[Listar Pets] Erro");
+        }catch (NullPointerException n){
+            view.mostrarMsgLn("Lista Vazia");
+        }
+
+    }
+
     public void buscarPet(){
 
         view.menuBusca();
@@ -150,8 +161,6 @@ public class PetController {
                 }
                 view.printarLista(dao.buscarPetPorTipo(tipo));
             }
-
-
         }catch (IOException i){
             view.mostrarMsgLn("[buscar pet] erro");
         }catch (InputMismatchException i){
@@ -161,6 +170,64 @@ public class PetController {
         }
     }
 
+    public void alterarPet(){
+        try{
+            if(dao.estaVazia() == null){
+                return;
+            }
+            view.printarLista(dao.listarPets());
+            view.mostrarMsg("Informe o índice do Pet a ser mudado: ");
+            int indice = sc.nextInt();
+            sc.nextLine();
+
+            view.mostrarMsg("Informe oque você quer mudar (nome, raca, idade, peso, endereco : ");
+            String mudanca = sc.nextLine().toLowerCase();
+            if(!mudanca.equals("nome") && !mudanca.equals("raca") && !mudanca.equals("idade") && !mudanca.equals("peso") && !mudanca.equals("endereco")){
+                throw new InputMismatchException();
+            }
+
+            String mudancaOfc = "";
+            Double mudancaOfcD = 0.0;
+
+            if(mudanca.equals("nome")){
+                view.mostrarMsg("Informe o novo nome: ");
+                mudancaOfc = sc.nextLine().toLowerCase();
+            }
+
+            if(mudanca.equals("raca")){
+                view.mostrarMsg("Informe a nova raca: ");
+                mudancaOfc = sc.nextLine().toLowerCase();
+            }
+
+            if(mudanca.equals("idade")){
+                view.mostrarMsg("Informe a nova idade: ");
+                mudancaOfcD = sc.nextDouble();
+                sc.nextLine();
+            }
+
+            if(mudanca.equals("peso")){
+                view.mostrarMsg("Informe o novo peso: ");
+                mudancaOfcD = sc.nextDouble();
+                sc.nextLine();
+            }
+
+            if(mudanca.equals("endereco")){
+                view.mostrarMsg("Informe o novo endereco: ");
+                mudancaOfc = sc.nextLine().toLowerCase();
+            }
+
+            view.printPet(dao.alterarPet(indice, mudanca, mudancaOfc, mudancaOfcD));
+
+
+        }catch (IOException i){
+            view.mostrarMsgLn("[Alterar Pet] IO error");
+        }catch (InputMismatchException i){
+            view.mostrarMsgLn("[Altera Pet] Input Error");
+        }catch (IndexOutOfBoundsException e){
+            view.mostrarMsgLn("[Alterar pet] Não tem o indice");
+        }
+
+    }
 
 
 }

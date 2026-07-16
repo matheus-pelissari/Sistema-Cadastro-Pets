@@ -38,6 +38,13 @@ public class PetDao {
         salvarPets(pets);
     }
 
+    public List<Pet> estaVazia()throws IOException{
+        List<Pet> p = listarPets();
+        if(p.isEmpty()){
+            return null;
+        }
+        return p;
+    }
 
     public List<Pet> buscarPetNome(String nome) throws  IOException{
         List<Pet> pets = listarPets();
@@ -157,6 +164,33 @@ public class PetDao {
             return null;
         }
         return petsComTipo;
+    }
+
+    public Pet alterarPet(int indice, String mudanca, String novoItemString, Double novoItemDouble) throws IOException{
+        List<Pet> pets = listarPets();
+
+        if (pets.get(indice) == null){
+            return null;
+        }
+
+        if(mudanca.equals("nome")){
+            pets.get(indice).setNomeSobrenome(novoItemString);
+        }
+        if(mudanca.equals("raca")){
+            pets.get(indice).setRaca(novoItemString);
+        }
+        if(mudanca.equals("idade")){
+            pets.get(indice).setIdade(novoItemDouble);
+        }
+        if(mudanca.equals("peso")){
+            pets.get(indice).setPeso(novoItemDouble);
+        }
+        if(mudanca.equals("endereco")){
+            pets.get(indice).setEndereco(novoItemString);
+        }
+
+        salvarPets(pets);
+        return pets.get(indice);
     }
 
 }

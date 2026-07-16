@@ -119,7 +119,10 @@ public class Pet {
     }
 
     public void setPeso(Double peso) {
-        this.peso = peso;
+        if(peso > 60.00 || peso < 0.5){
+            throw new IllegalArgumentException("[peso] Peso inválido");
+        }
+        this.peso = peso;;
     }
 
     public Double getIdade() {
@@ -127,7 +130,15 @@ public class Pet {
     }
 
     public void setIdade(Double idade) {
-        this.idade = idade;
+        if(idade > 20){
+            throw new IllegalArgumentException("[idade] Idade inválida");
+        }
+        else if(idade < 1){
+            this.idade = idade / 12;
+        }
+        else{
+            this.idade = idade;
+        }
     }
 
     public String getDateCreation() {
@@ -159,7 +170,15 @@ public class Pet {
     }
 
     public void setRaca(String raca) {
-        this.raca = raca;
+        if(raca.isEmpty()){
+            this.raca = naoInf;
+        }
+        else if(!raca.matches("[A-Z a-z]+")){
+            throw new InputMismatchException("[raca] Raça invalida");
+        }
+        else{
+            this.raca = raca;
+        };
     }
 
     public String getNomeSobrenome() {
@@ -167,7 +186,20 @@ public class Pet {
     }
 
     public void setNomeSobrenome(String nomeSobrenome) {
-        this.nomeSobrenome = nomeSobrenome;
+
+        String[] dividido = nomeSobrenome.split(" ");
+        if (nomeSobrenome.isEmpty()){
+            this.nomeSobrenome = naoInf;
+        }
+        else if(!nomeSobrenome.matches("[A-Z a-z]+")){
+            throw new InputMismatchException("[nomeSobrenome] Caracteres Invalidos");
+        }
+        else if(dividido.length < 2){
+            throw new InputMismatchException("[nomeSobrenome] Precisa ter nome e sobrenome");
+        }
+        else{
+            this.nomeSobrenome = nomeSobrenome;
+        }
     }
 
     public String getEndereco() {
@@ -180,12 +212,12 @@ public class Pet {
 
     public String toString(){
         return "\nNome: " + getNomeSobrenome()
-                +"\nRaça: " + getRaca()
-                +"\nTipo: " + getTipo()
-                +"\nSexo: " + getSexo()
-                +"\nIdade: " + getIdade()
-                +"\nPeso: " + getPeso()
-                +"\nEndereço: " + getEndereco()
-                +"\nData Criação: " +getDateCreation();
+                +" || Raça: " + getRaca()
+                +" || Tipo: " + getTipo()
+                +" || Sexo: " + getSexo()
+                +" || Idade: " + getIdade()
+                +" | |Peso: " + getPeso()
+                +" || Endereço: " + getEndereco()
+                +" || Data Criação: " +getDateCreation();
     }
 }
