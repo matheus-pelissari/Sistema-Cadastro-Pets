@@ -2,6 +2,7 @@ package dao;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import enums.Sexo;
 import jsonutil.JsonUtil;
 import model.Pet;
 
@@ -52,4 +53,30 @@ public class PetDao {
             System.out.println(pet);
         }
     }
+
+    public void buscarPetSexo(String sexo) throws IOException{
+        List<Pet> pets = listarPets();
+        List<Pet> petsComSexoProcurado = new ArrayList<>();
+        Sexo sexoEscolhido;
+
+        if(sexo.equals("feminino")){
+            sexoEscolhido = Sexo.Feminino;
+        }
+        else{
+            sexoEscolhido = Sexo.Masculino;
+        }
+
+        for(Pet pet : pets){
+            if(pet.getSexo().equals(sexoEscolhido)){
+                petsComSexoProcurado.add(pet);
+            }
+        }
+        if(petsComSexoProcurado.isEmpty()){
+            return;
+        }
+        for(Pet pet: petsComSexoProcurado){
+            System.out.println(pet);
+        }
+    }
+
 }

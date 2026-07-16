@@ -8,6 +8,7 @@ import view.View;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class PetController {
@@ -95,14 +96,27 @@ public class PetController {
             if(escolha.equals("nome ou sobrenome")){
                 view.mostrarMsg("Informe o nome/sobrenome: ");
                 String nome = sc.nextLine().toLowerCase();
+                if(!nome.matches("[A-Z a-z]+")){
+                    throw new InputMismatchException();
+                }
                 dao.buscarPetNome(nome);
             }
 
+            else if(escolha.equals("sexo")){
+                view.mostrarMsg("Informe o sexo: ");
+                String sexo = sc.nextLine().toLowerCase();
+                if(!sexo.equals("masculino") && !sexo.equals("feminino")){
+                    throw new InputMismatchException();
+                }
+                dao.buscarPetSexo(sexo);
+            }
 
 
 
         }catch (IOException i){
             view.mostrarMsgLn("[buscar pet] erro");
+        }catch (InputMismatchException i){
+            view.mostrarMsgLn("[buscar pet] input error");
         }
     }
 
