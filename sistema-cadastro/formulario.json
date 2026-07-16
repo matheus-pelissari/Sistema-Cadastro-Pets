@@ -1,0 +1,11 @@
+{
+  "1" : "Qual o nome e sobrenome do pet? [A-Z a-z]",
+  "2" : "Qual o tipo do pet (Cachorro/Gato)?",
+  "3" : "Qual o sexo do animal (Masculino/Feminino)?",
+  "4" : "Qual a cidade que ele foi encontrado? [A-Z a-z]",
+  "5" : "Qual a rua que ele foi encontrado? [A-Z a-z]",
+  "6" : "Qual o número da rua?",
+  "7" : "Qual a idade aproximada do pet?",
+  "8" : "Qual o peso aproximado do pet?",
+  "9" : "Qual a raça do pet?"
+}
