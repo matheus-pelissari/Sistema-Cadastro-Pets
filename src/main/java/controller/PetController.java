@@ -84,4 +84,28 @@ public class PetController {
             view.mostrarMsgLn("Erro ao ler o arquivo");
         }
     }
+
+    public void buscarPet(){
+
+        view.menuBusca();
+
+        try{
+            String escolha = sc.nextLine().toLowerCase();
+
+            if(escolha.equals("nome ou sobrenome")){
+                view.mostrarMsg("Informe o nome/sobrenome: ");
+                String nome = sc.nextLine().toLowerCase();
+                dao.buscarPetNome(nome);
+            }
+
+
+
+
+        }catch (IOException i){
+            view.mostrarMsgLn("[buscar pet] erro");
+        }
+    }
+
+
+
 }

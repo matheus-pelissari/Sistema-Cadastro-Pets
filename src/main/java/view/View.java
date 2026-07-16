@@ -74,7 +74,7 @@ public class View {
                     break;
 
                 case 5:
-                    // Listar pets por algum critério
+                    petControler.buscarPet();
                     break;
 
                 case 6:
@@ -102,8 +102,14 @@ public class View {
         System.out.println("**MENU** " + s);
     }
 
-    public void teste(){
-        System.out.println("teste");
+    public void menuBusca(){
+        System.out.println("Nome ou Sobrenome");
+        System.out.println("Sexo");
+        System.out.println("Idade");
+        System.out.println("Peso");
+        System.out.println("Raça");
+        System.out.println("Endereço");
+        System.out.print("Escolha: ");
     }
 
 }

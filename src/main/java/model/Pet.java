@@ -138,8 +138,6 @@ public class Pet {
         this.dateCreation = dateCreation;
     }
 
-
-
     public Sexo getSexo() {
         return sexo;
     }
@@ -178,5 +176,16 @@ public class Pet {
 
     public void setEndereco(String endereco) {
         this.endereco = endereco;
+    }
+
+    public String toString(){
+        return "\nNome: " + getNomeSobrenome()
+                +"\nRaça: " + getRaca()
+                +"\nTipo: " + getTipo()
+                +"\nSexo: " + getSexo()
+                +"\nIdade: " + getIdade()
+                +"\nPeso: " + getPeso()
+                +"\nEndereço: " + getEndereco()
+                +"\nData Criação: " +getDateCreation();
     }
 }

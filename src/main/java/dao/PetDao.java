@@ -35,4 +35,21 @@ public class PetDao {
         pets.add(novoPet);
         salvarPets(pets);
     }
+
+    public void buscarPetNome(String nome) throws  IOException{
+        List<Pet> pets = listarPets();
+        List<Pet> petsComNome = new ArrayList<>();
+
+        for (Pet pet : pets) {
+            if (pet.getNomeSobrenome().contains(nome)) {
+                petsComNome.add(pet);
+            }
+        }
+        if(petsComNome.isEmpty()){
+            return;
+        }
+        for (Pet pet : petsComNome) {
+            System.out.println(pet);
+        }
+    }
 }
