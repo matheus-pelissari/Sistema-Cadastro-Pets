@@ -1,10 +1,28 @@
 [ {
-  "nomeSobrenome" : "teste silva",
-  "raca" : "golden",
-  "tipo" : "Cachorro",
+  "nomeSobrenome" : "pet um",
+  "raca" : "raca s",
+  "tipo" : "Gato",
   "sexo" : "Masculino",
+  "idade" : 5.0,
+  "peso" : 5.0,
+  "endereco" : "cidade a, rua a, 10",
+  "dateCreation" : "16-07-2026 05:36"
+}, {
+  "nomeSobrenome" : "pet dois",
+  "raca" : "raca aaaa",
+  "tipo" : "Cachorro",
+  "sexo" : "Feminino",
+  "idade" : 2.0,
+  "peso" : 12.0,
+  "endereco" : "cidade b, rua c, 42",
+  "dateCreation" : "16-07-2026 05:37"
+}, {
+  "nomeSobrenome" : "pet tres",
+  "raca" : "raca aaoo",
+  "tipo" : "Gato",
+  "sexo" : "Feminino",
   "idade" : 4.0,
-  "peso" : 10.0,
-  "endereco" : "cidade x, rua y, 10",
-  "dateCreation" : "16-07-2026 05:18"
+  "peso" : 7.0,
+  "endereco" : "cidade z, rua nnn, 213",
+  "dateCreation" : "16-07-2026 05:38"
 } ]

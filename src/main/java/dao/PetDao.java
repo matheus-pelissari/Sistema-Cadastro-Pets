@@ -193,4 +193,18 @@ public class PetDao {
         return pets.get(indice);
     }
 
+    public Pet deletarPet(int indice, String confirmacao) throws IOException{
+        List<Pet> pets = listarPets();
+
+        if (pets.get(indice) == null){
+            return null;
+        }
+        if(confirmacao.equals("sim")){
+            pets.remove(indice);
+            salvarPets(pets);
+        }
+
+        return pets.get(indice);
+
+    }
 }

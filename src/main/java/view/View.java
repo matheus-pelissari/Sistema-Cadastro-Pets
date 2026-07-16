@@ -66,7 +66,7 @@ public class View {
                     break;
 
                 case 3 :
-                    // Deletar um pet cadastrado
+                    petControler.removerPet();
                     break;
 
                 case 4 :

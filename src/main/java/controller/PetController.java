@@ -229,5 +229,31 @@ public class PetController {
 
     }
 
+    public void removerPet(){
 
+        try{
+            if(dao.estaVazia() == null){
+                return;
+            }
+            view.printarLista(dao.listarPets());
+
+            view.mostrarMsg("Informe o índice do Pet a ser mudado: ");
+            int indice = sc.nextInt();
+            sc.nextLine();
+
+            String confirmacao = "";
+            view.mostrarMsgLn("Confirmar Delete (sim/nao): " );
+            view.printPet(dao.deletarPet(indice, confirmacao));
+            confirmacao = sc.nextLine();
+            if(confirmacao.equals("sim")){
+                view.mostrarMsg("Pet Deletado -> ");
+                dao.deletarPet(indice, confirmacao);
+            }
+
+        }catch (IOException i){
+            view.mostrarMsgLn("[Remover Pet] IO");
+        }catch (IndexOutOfBoundsException i){
+            view.mostrarMsgLn("[Index remover Pet]");
+        }
+    }
 }
