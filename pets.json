@@ -1,24 +1,24 @@
 [ {
   "nomeSobrenome" : "matheus santos",
-  "raca" : "A",
+  "raca" : "a",
   "tipo" : "Cachorro",
   "sexo" : "Masculino",
   "idade" : 2.0,
   "peso" : 2.0,
-  "endereco" : "a, a, 10",
+  "endereco" : "curitiba, a, 10",
   "dateCreation" : "16-07-2026 02:54"
 }, {
   "nomeSobrenome" : "matheus bla",
-  "raca" : "A",
+  "raca" : "a",
   "tipo" : "Cachorro",
   "sexo" : "Feminino",
   "idade" : 2.0,
   "peso" : 2.0,
-  "endereco" : "a, a, 21",
+  "endereco" : "a, munhoz da rocha, 21",
   "dateCreation" : "16-07-2026 02:55"
 }, {
   "nomeSobrenome" : "teste silva",
-  "raca" : "A",
+  "raca" : "b",
   "tipo" : "Gato",
   "sexo" : "Feminino",
   "idade" : 5.0,

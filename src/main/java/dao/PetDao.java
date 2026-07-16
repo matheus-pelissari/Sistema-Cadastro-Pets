@@ -3,6 +3,7 @@ package dao;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import enums.Sexo;
+import enums.Tipo;
 import jsonutil.JsonUtil;
 import model.Pet;
 
@@ -37,7 +38,8 @@ public class PetDao {
         salvarPets(pets);
     }
 
-    public void buscarPetNome(String nome) throws  IOException{
+
+    public List<Pet> buscarPetNome(String nome) throws  IOException{
         List<Pet> pets = listarPets();
         List<Pet> petsComNome = new ArrayList<>();
 
@@ -47,14 +49,12 @@ public class PetDao {
             }
         }
         if(petsComNome.isEmpty()){
-            return;
+            return null;
         }
-        for (Pet pet : petsComNome) {
-            System.out.println(pet);
-        }
+        return petsComNome;
     }
 
-    public void buscarPetSexo(String sexo) throws IOException{
+    public List<Pet> buscarPetSexo(String sexo) throws IOException{
         List<Pet> pets = listarPets();
         List<Pet> petsComSexoProcurado = new ArrayList<>();
         Sexo sexoEscolhido;
@@ -65,18 +65,98 @@ public class PetDao {
         else{
             sexoEscolhido = Sexo.Masculino;
         }
-
         for(Pet pet : pets){
             if(pet.getSexo().equals(sexoEscolhido)){
                 petsComSexoProcurado.add(pet);
             }
         }
         if(petsComSexoProcurado.isEmpty()){
-            return;
+            return null;
         }
-        for(Pet pet: petsComSexoProcurado){
-            System.out.println(pet);
+        return petsComSexoProcurado;
+    }
+
+    public List<Pet> buscarPetPorIdade(Double idade) throws IOException{
+        List<Pet> pets = listarPets();
+        List<Pet> petsComIdade = new ArrayList<>();
+
+        for(Pet pet : pets){
+            if(pet.getIdade().equals(idade)){
+                petsComIdade.add(pet);
+            }
         }
+        if(petsComIdade.isEmpty()){
+            return null;
+        }
+        return petsComIdade;
+    }
+
+    public List<Pet> buscarPetPorPeso(Double peso) throws IOException{
+        List<Pet> pets = listarPets();
+        List<Pet> petsComPeso = new ArrayList<>();
+
+        for(Pet pet : pets){
+            if(pet.getPeso().equals(peso)){
+                petsComPeso.add(pet);
+            }
+        }
+        if(petsComPeso.isEmpty()){
+            return null;
+        }
+        return petsComPeso;
+    }
+
+    public List<Pet> buscarPetPorRaca(String raca) throws IOException{
+        List<Pet> pets = listarPets();
+        List<Pet> petsComRaca = new ArrayList<>();
+
+        for(Pet pet : pets){
+            if(pet.getRaca().equals(raca)){
+                petsComRaca.add(pet);
+            }
+        }
+        if(petsComRaca.isEmpty()){
+            return null;
+        }
+        return petsComRaca;
+    }
+
+    public List<Pet> buscarPetPorEndereco(String endereco) throws IOException{
+        List<Pet> pets = listarPets();
+        List<Pet> petsComEndereco = new ArrayList<>();
+
+        for(Pet pet: pets){
+            if(pet.getEndereco().contains(endereco)){
+                petsComEndereco.add(pet);
+            }
+        }
+        if(petsComEndereco.isEmpty()){
+            return null;
+        }
+        return petsComEndereco;
+    }
+
+    public List<Pet> buscarPetPorTipo(String tipo) throws IOException{
+        List<Pet> pets = listarPets();
+        List<Pet> petsComTipo = new ArrayList<>();
+        Tipo tipoEnum;
+
+        if(tipo.equals("gato")){
+            tipoEnum = Tipo.Gato;
+        }
+        else{
+            tipoEnum = Tipo.Cachorro;
+        }
+
+        for(Pet pet : pets){
+            if(pet.getTipo().equals(tipoEnum)){
+                petsComTipo.add(pet);
+            }
+        }
+        if(petsComTipo.isEmpty()){
+            return null;
+        }
+        return petsComTipo;
     }
 
 }

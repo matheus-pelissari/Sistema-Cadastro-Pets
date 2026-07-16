@@ -3,9 +3,11 @@ package view;
 import controller.PetController;
 import jsonutil.JsonUtil;
 import com.fasterxml.jackson.databind.JsonNode;
+import model.Pet;
 
 import java.io.File;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 
 public class View {
@@ -107,9 +109,16 @@ public class View {
         System.out.println("Sexo");
         System.out.println("Idade");
         System.out.println("Peso");
-        System.out.println("Raça");
-        System.out.println("Endereço");
+        System.out.println("Raca");
+        System.out.println("Endereco");
+        System.out.println("Tipo");
         System.out.print("Escolha: ");
+    }
+
+    public void printarLista(List<Pet> p){
+        for(Pet pet: p){
+            System.out.println(pet);
+        }
     }
 
 }

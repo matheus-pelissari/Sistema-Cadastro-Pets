@@ -72,7 +72,7 @@ public class PetController {
             sc.nextLine();
 
             view.escolha(root.get("9"));
-            raca = sc.nextLine();
+            raca = sc.nextLine().toLowerCase();
 
             try{
                 Pet p = new Pet(nomeSobrenome, escolhaTipo, escolhaSexo, enderecoCidade,enderecoRua, enderecoNumeroRua, idade, peso, raca);
@@ -99,24 +99,65 @@ public class PetController {
                 if(!nome.matches("[A-Z a-z]+")){
                     throw new InputMismatchException();
                 }
-                dao.buscarPetNome(nome);
+                view.printarLista(dao.buscarPetNome(nome));
             }
 
-            else if(escolha.equals("sexo")){
-                view.mostrarMsg("Informe o sexo: ");
+            if(escolha.equals("sexo")){
+                view.mostrarMsg("Informe o sexo (masculino ou feminino): ");
                 String sexo = sc.nextLine().toLowerCase();
                 if(!sexo.equals("masculino") && !sexo.equals("feminino")){
                     throw new InputMismatchException();
                 }
-                dao.buscarPetSexo(sexo);
+                view.printarLista(dao.buscarPetSexo(sexo));
             }
 
+            if(escolha.equals("idade")){
+
+                view.mostrarMsg("Informe a idade: ");
+                Double idade = sc.nextDouble();
+                sc.nextLine();
+                view.printarLista(dao.buscarPetPorIdade(idade));
+
+            }
+
+            if(escolha.equals("peso")){
+                view.mostrarMsg("Informe o peso: ");
+                Double peso = sc.nextDouble();
+                sc.nextLine();
+                view.printarLista(dao.buscarPetPorPeso(peso));
+            }
+
+            if(escolha.equals("raca")){
+                view.mostrarMsg("Informe a raça: ");
+                String raca = sc.nextLine();
+                if(!raca.matches("[A-Z a-z]+")){
+                    throw new InputMismatchException();
+                }
+                view.printarLista(dao.buscarPetPorRaca(raca));
+            }
+
+            if(escolha.equals("endereco")){
+                view.mostrarMsg("Informe o endereço (Cidade, Rua, Número): ");
+                String endereco = sc.nextLine();
+                view.printarLista(dao.buscarPetPorEndereco(endereco));
+            }
+
+            if(escolha.equals("tipo")){
+                view.mostrarMsg("Informe o tipo (Cachorro ou Gato): ");
+                String tipo = sc.nextLine();
+                if(!tipo.equals("gato") && !tipo.equals("cachorro")){
+                    throw new InputMismatchException();
+                }
+                view.printarLista(dao.buscarPetPorTipo(tipo));
+            }
 
 
         }catch (IOException i){
             view.mostrarMsgLn("[buscar pet] erro");
         }catch (InputMismatchException i){
             view.mostrarMsgLn("[buscar pet] input error");
+        }catch (NullPointerException n){
+            view.mostrarMsgLn("Não Encontrado");
         }
     }
 
